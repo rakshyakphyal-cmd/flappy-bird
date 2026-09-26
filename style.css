@@ -13,7 +13,7 @@ body {
 
     width: 100%;
 
-    min-height: 100vh;
+    height: 100vh;
 
     display: flex;
 
@@ -26,8 +26,6 @@ body {
     font-family: Arial, sans-serif;
 
     overflow: hidden;
-
-    touch-action: manipulation;
 
 }
 
@@ -57,7 +55,7 @@ body {
 
     -webkit-user-select: none;
 
-    touch-action: manipulation;
+    touch-action: none;
 
 }
 
@@ -95,14 +93,9 @@ body {
 
     position: absolute;
 
-    width: 85px;
+    width: 110px;
 
-    background-image:
-        url("pipe.png");
-
-    background-size: 100% 100%;
-
-    background-repeat: no-repeat;
+    object-fit: fill;
 
     z-index: 5;
 
@@ -248,7 +241,7 @@ body {
 
 
 /* =========================
-   BUTTONS
+   BUTTON
 ========================= */
 
 button {
@@ -274,13 +267,6 @@ button {
     cursor: pointer;
 
     touch-action: manipulation;
-
-}
-
-
-button:hover {
-
-    background: #ffaa00;
 
 }
 
@@ -366,28 +352,6 @@ button:hover {
     #gameOver h1 {
 
         font-size: 30px;
-
-    }
-
-}
-
-
-/* =========================
-   SMALL PHONE
-========================= */
-
-@media (max-width: 400px) {
-
-    #startScreen h1 {
-
-        font-size: 25px;
-
-    }
-
-
-    #score {
-
-        font-size: 32px;
 
     }
 
