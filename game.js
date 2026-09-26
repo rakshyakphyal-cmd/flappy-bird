@@ -1,12 +1,15 @@
-// ======================================
-// GET HTML ELEMENTS
-// ======================================
+// ==========================================
+// GET ELEMENTS
+// ==========================================
 
-const game = document.getElementById("game");
+const game =
+    document.getElementById("game");
 
-const bird = document.getElementById("bird");
+const bird =
+    document.getElementById("bird");
 
-const scoreText = document.getElementById("score");
+const scoreText =
+    document.getElementById("score");
 
 const startScreen =
     document.getElementById("startScreen");
@@ -30,9 +33,9 @@ const music =
     document.getElementById("music");
 
 
-// ======================================
+// ==========================================
 // GAME SETTINGS
-// ======================================
+// ==========================================
 
 const GAME_WIDTH = 600;
 
@@ -53,9 +56,9 @@ const JUMP_POWER = -10;
 const PIPE_SPEED = 4;
 
 
-// ======================================
+// ==========================================
 // GAME VARIABLES
-// ======================================
+// ==========================================
 
 let birdY = 350;
 
@@ -70,9 +73,9 @@ let pipes = [];
 let pipeTimer = null;
 
 
-// ======================================
+// ==========================================
 // START GAME
-// ======================================
+// ==========================================
 
 function startGame() {
 
@@ -118,10 +121,10 @@ function startGame() {
 
     music.currentTime = 0;
 
-    music.play().catch(function(error) {
+    music.play().catch(function() {
 
         console.log(
-            "Music needs user interaction."
+            "Music will start after user interaction."
         );
 
     });
@@ -132,36 +135,33 @@ function startGame() {
     createPipe();
 
 
-    // Stop old timer
+    // Clear previous timer
 
-    if (pipeTimer) {
+    if (pipeTimer !== null) {
 
         clearInterval(pipeTimer);
 
     }
 
 
-    // Create pipes every 2 seconds
+    // Create new pipes
 
-    pipeTimer = setInterval(
-        function() {
+    pipeTimer = setInterval(function() {
 
-            if (gameRunning) {
+        if (gameRunning) {
 
-                createPipe();
+            createPipe();
 
-            }
+        }
 
-        },
-        2000
-    );
+    }, 2000);
 
 }
 
 
-// ======================================
+// ==========================================
 // JUMP
-// ======================================
+// ==========================================
 
 function jump() {
 
@@ -175,29 +175,26 @@ function jump() {
     velocity = JUMP_POWER;
 
 
-    // Play jump sound
+    // Jump sound
 
     jumpSound.currentTime = 0;
 
     jumpSound.volume = 1;
 
-    jumpSound.play().catch(
-        function(error) {
+    jumpSound.play().catch(function() {
 
-            console.log(
-                "Jump sound error:",
-                error
-            );
+        console.log(
+            "Jump sound unavailable."
+        );
 
-        }
-    );
+    });
 
 }
 
 
-// ======================================
+// ==========================================
 // START BUTTON
-// ======================================
+// ==========================================
 
 startButton.addEventListener(
     "click",
@@ -211,9 +208,9 @@ startButton.addEventListener(
 );
 
 
-// ======================================
+// ==========================================
 // RESTART BUTTON
-// ======================================
+// ==========================================
 
 restartButton.addEventListener(
     "click",
@@ -227,9 +224,9 @@ restartButton.addEventListener(
 );
 
 
-// ======================================
-// KEYBOARD
-// ======================================
+// ==========================================
+// SPACE KEY
+// ==========================================
 
 document.addEventListener(
     "keydown",
@@ -260,9 +257,9 @@ document.addEventListener(
 );
 
 
-// ======================================
+// ==========================================
 // MOBILE TOUCH
-// ======================================
+// ==========================================
 
 game.addEventListener(
     "touchstart",
@@ -271,7 +268,7 @@ game.addEventListener(
         event.preventDefault();
 
 
-        // Don't jump when pressing buttons
+        // Don't jump when button is touched
 
         if (
             event.target === startButton ||
@@ -301,9 +298,9 @@ game.addEventListener(
 );
 
 
-// ======================================
-// MOUSE
-// ======================================
+// ==========================================
+// MOUSE CLICK
+// ==========================================
 
 game.addEventListener(
     "mousedown",
@@ -329,9 +326,9 @@ game.addEventListener(
 );
 
 
-// ======================================
+// ==========================================
 // CREATE PIPE
-// ======================================
+// ==========================================
 
 function createPipe() {
 
@@ -353,7 +350,9 @@ function createPipe() {
         PIPE_GAP;
 
 
-    // Create top pipe
+    // -------------------------
+    // TOP PIPE
+    // -------------------------
 
     const topPipe =
         document.createElement("div");
@@ -377,7 +376,9 @@ function createPipe() {
         GAME_WIDTH + "px";
 
 
-    // Create bottom pipe
+    // -------------------------
+    // BOTTOM PIPE
+    // -------------------------
 
     const bottomPipe =
         document.createElement("div");
@@ -408,7 +409,7 @@ function createPipe() {
     game.appendChild(bottomPipe);
 
 
-    // Store pipe
+    // Save pipe
 
     pipes.push({
 
@@ -425,9 +426,9 @@ function createPipe() {
 }
 
 
-// ======================================
+// ==========================================
 // MOVE PIPES
-// ======================================
+// ==========================================
 
 function movePipes() {
 
@@ -451,14 +452,13 @@ function movePipes() {
             pipe.x + "px";
 
 
-        // ==============================
+        // -------------------------
         // SCORE
-        // ==============================
+        // -------------------------
 
         if (
             !pipe.scored &&
-            pipe.x + PIPE_WIDTH <
-            120
+            pipe.x + PIPE_WIDTH < 120
         ) {
 
             pipe.scored = true;
@@ -471,13 +471,12 @@ function movePipes() {
         }
 
 
-        // ==============================
+        // -------------------------
         // REMOVE PIPE
-        // ==============================
+        // -------------------------
 
         if (
-            pipe.x <
-            -PIPE_WIDTH
+            pipe.x < -PIPE_WIDTH
         ) {
 
             pipe.top.remove();
@@ -493,11 +492,14 @@ function movePipes() {
 }
 
 
-// ======================================
+// ==========================================
 // COLLISION
-// ======================================
+// ==========================================
 
-function collision(rect1, rect2) {
+function collision(
+    rect1,
+    rect2
+) {
 
     return !(
         rect1.right < rect2.left ||
@@ -509,9 +511,9 @@ function collision(rect1, rect2) {
 }
 
 
-// ======================================
+// ==========================================
 // CHECK COLLISION
-// ======================================
+// ==========================================
 
 function checkCollision() {
 
@@ -519,9 +521,9 @@ function checkCollision() {
         bird.getBoundingClientRect();
 
 
-    // ==============================
+    // -------------------------
     // GROUND
-    // ==============================
+    // -------------------------
 
     if (
         birdY + BIRD_HEIGHT >=
@@ -535,9 +537,9 @@ function checkCollision() {
     }
 
 
-    // ==============================
+    // -------------------------
     // CEILING
-    // ==============================
+    // -------------------------
 
     if (birdY <= 0) {
 
@@ -548,9 +550,9 @@ function checkCollision() {
     }
 
 
-    // ==============================
+    // -------------------------
     // PIPES
-    // ==============================
+    // -------------------------
 
     for (const pipe of pipes) {
 
@@ -585,16 +587,16 @@ function checkCollision() {
 }
 
 
-// ======================================
+// ==========================================
 // GAME OVER
-// ======================================
+// ==========================================
 
 function endGame() {
 
     gameRunning = false;
 
 
-    if (pipeTimer) {
+    if (pipeTimer !== null) {
 
         clearInterval(pipeTimer);
 
@@ -616,24 +618,23 @@ function endGame() {
 }
 
 
-// ======================================
+// ==========================================
 // GAME LOOP
-// ======================================
+// ==========================================
 
 function gameLoop() {
 
     if (gameRunning) {
-
 
         // Gravity
 
         velocity += GRAVITY;
 
 
+        // Bird movement
+
         birdY += velocity;
 
-
-        // Move bird
 
         bird.style.top =
             birdY + "px";
@@ -644,7 +645,7 @@ function gameLoop() {
         movePipes();
 
 
-        // Check collision
+        // Collision
 
         checkCollision();
 
@@ -658,8 +659,8 @@ function gameLoop() {
 }
 
 
-// ======================================
-// RUN GAME
-// ======================================
+// ==========================================
+// START LOOP
+// ==========================================
 
 gameLoop();
