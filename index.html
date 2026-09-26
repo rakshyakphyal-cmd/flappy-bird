@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Flappy Bird</title>
 
@@ -13,21 +16,36 @@
 
     <div id="game">
 
-        <img id="bird" src="bird.png">
+        <!-- Bird -->
+        <img id="bird" src="bird.png" alt="Bird">
 
-        <div id="score">Score: 0</div>
+        <!-- Score -->
+        <div id="score">0</div>
 
+
+        <!-- Start Screen -->
         <div id="startScreen">
+
             <h1>FLAPPY BIRD</h1>
-            <p>Press SPACE to fly</p>
-            <button id="startButton">START</button>
+
+            <p>Tap or press SPACE to fly</p>
+
+            <button id="startButton">
+                START
+            </button>
+
         </div>
 
+
+        <!-- Game Over -->
         <div id="gameOver">
 
             <h1>GAME OVER</h1>
 
-            <p id="finalScore">Score: 0</p>
+            <p>
+                Score:
+                <span id="finalScore">0</span>
+            </p>
 
             <button id="restartButton">
                 RESTART
@@ -38,11 +56,14 @@
     </div>
 
 
+    <!-- Jump Sound -->
     <audio id="jumpSound"
            src="jump.mp3"
            preload="auto">
     </audio>
 
+
+    <!-- Background Music -->
     <audio id="music"
            src="music.mp3"
            preload="auto"
@@ -53,4 +74,5 @@
     <script src="game.js"></script>
 
 </body>
+
 </html>
