@@ -1,5 +1,5 @@
 // ==========================================
-// GET ELEMENTS
+// ELEMENTS
 // ==========================================
 
 const game =
@@ -45,7 +45,7 @@ const BIRD_WIDTH = 75;
 
 const BIRD_HEIGHT = 60;
 
-const PIPE_WIDTH = 85;
+const PIPE_WIDTH = 110;
 
 const PIPE_GAP = 190;
 
@@ -57,7 +57,7 @@ const PIPE_SPEED = 4;
 
 
 // ==========================================
-// GAME VARIABLES
+// VARIABLES
 // ==========================================
 
 let birdY = 350;
@@ -124,7 +124,7 @@ function startGame() {
     music.play().catch(function() {
 
         console.log(
-            "Music will start after user interaction."
+            "Music needs user interaction."
         );
 
     });
@@ -135,7 +135,7 @@ function startGame() {
     createPipe();
 
 
-    // Clear previous timer
+    // Clear old timer
 
     if (pipeTimer !== null) {
 
@@ -144,17 +144,20 @@ function startGame() {
     }
 
 
-    // Create new pipes
+    // New pipes
 
-    pipeTimer = setInterval(function() {
+    pipeTimer = setInterval(
+        function() {
 
-        if (gameRunning) {
+            if (gameRunning) {
 
-            createPipe();
+                createPipe();
 
-        }
+            }
 
-    }, 2000);
+        },
+        2000
+    );
 
 }
 
@@ -174,8 +177,6 @@ function jump() {
 
     velocity = JUMP_POWER;
 
-
-    // Jump sound
 
     jumpSound.currentTime = 0;
 
@@ -238,7 +239,6 @@ document.addEventListener(
 
         }
 
-
         event.preventDefault();
 
 
@@ -267,8 +267,6 @@ game.addEventListener(
 
         event.preventDefault();
 
-
-        // Don't jump when button is touched
 
         if (
             event.target === startButton ||
@@ -299,7 +297,7 @@ game.addEventListener(
 
 
 // ==========================================
-// MOUSE CLICK
+// MOUSE
 // ==========================================
 
 game.addEventListener(
@@ -350,17 +348,20 @@ function createPipe() {
         PIPE_GAP;
 
 
-    // -------------------------
+    // ------------------------------
     // TOP PIPE
-    // -------------------------
+    // ------------------------------
 
     const topPipe =
-        document.createElement("div");
+        document.createElement("img");
+
+
+    topPipe.src =
+        "pipe.png";
 
 
     topPipe.classList.add(
-        "pipe",
-        "top"
+        "pipe"
     );
 
 
@@ -368,25 +369,28 @@ function createPipe() {
         topHeight + "px";
 
 
-    topPipe.style.top =
-        "0px";
-
-
     topPipe.style.left =
         GAME_WIDTH + "px";
 
 
-    // -------------------------
+    topPipe.style.top =
+        "0px";
+
+
+    // ------------------------------
     // BOTTOM PIPE
-    // -------------------------
+    // ------------------------------
 
     const bottomPipe =
-        document.createElement("div");
+        document.createElement("img");
+
+
+    bottomPipe.src =
+        "pipe.png";
 
 
     bottomPipe.classList.add(
-        "pipe",
-        "bottom"
+        "pipe"
     );
 
 
@@ -394,12 +398,18 @@ function createPipe() {
         bottomHeight + "px";
 
 
+    bottomPipe.style.left =
+        GAME_WIDTH + "px";
+
+
     bottomPipe.style.bottom =
         "0px";
 
 
-    bottomPipe.style.left =
-        GAME_WIDTH + "px";
+    // Flip bottom pipe
+
+    bottomPipe.style.transform =
+        "rotate(180deg)";
 
 
     // Add pipes
@@ -452,9 +462,7 @@ function movePipes() {
             pipe.x + "px";
 
 
-        // -------------------------
         // SCORE
-        // -------------------------
 
         if (
             !pipe.scored &&
@@ -471,9 +479,7 @@ function movePipes() {
         }
 
 
-        // -------------------------
-        // REMOVE PIPE
-        // -------------------------
+        // REMOVE
 
         if (
             pipe.x < -PIPE_WIDTH
@@ -521,9 +527,7 @@ function checkCollision() {
         bird.getBoundingClientRect();
 
 
-    // -------------------------
-    // GROUND
-    // -------------------------
+    // Ground
 
     if (
         birdY + BIRD_HEIGHT >=
@@ -537,9 +541,7 @@ function checkCollision() {
     }
 
 
-    // -------------------------
-    // CEILING
-    // -------------------------
+    // Ceiling
 
     if (birdY <= 0) {
 
@@ -550,9 +552,7 @@ function checkCollision() {
     }
 
 
-    // -------------------------
-    // PIPES
-    // -------------------------
+    // Pipes
 
     for (const pipe of pipes) {
 
@@ -626,12 +626,7 @@ function gameLoop() {
 
     if (gameRunning) {
 
-        // Gravity
-
         velocity += GRAVITY;
-
-
-        // Bird movement
 
         birdY += velocity;
 
@@ -640,12 +635,8 @@ function gameLoop() {
             birdY + "px";
 
 
-        // Move pipes
-
         movePipes();
 
-
-        // Collision
 
         checkCollision();
 
