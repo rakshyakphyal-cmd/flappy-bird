@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    background: #222;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   LARGE GAME
+========================= */
+
+#game {
+    position: relative;
+
+    width: 600px;
+    height: 800px;
+
+    overflow: hidden;
+
+    background-image: url("assets/background.png");
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* =========================
+   BIRD
+========================= */
+
+#bird {
+    position: absolute;
+
+    width: 90px;
+    height: 72px;
+
+    left: 120px;
+    top: 350px;
+
+    object-fit: contain;
+
+    z-index: 10;
+}
+
+/* =========================
+   PIPES
+========================= */
+
+.pipe {
+    position: absolute;
+
+    width: 90px;
+
+    background-image: url("assets/pipe.png");
+
+    background-size: 100% 100%;
+
+    background-repeat: no-repeat;
+
+    z-index: 5;
+}
+
+.pipe.top {
+    top: 0;
+}
+
+.pipe.bottom {
+    bottom: 0;
+}
+
+
+/* =========================
+   SCORE
+========================= */
+
+#score {
+    position: absolute;
+
+    top: 25px;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 45px;
+
+    font-weight: bold;
+
+    text-shadow: 3px 3px 5px black;
+
+    z-index: 20;
+}
+
+
+/* =========================
+   START SCREEN
+========================= */
+
+#startScreen {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 400px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: white;
+
+    border-radius: 20px;
+
+    z-index: 50;
+}
+
+#startScreen h1 {
+    font-size: 42px;
+
+    margin-bottom: 20px;
+}
+
+#startScreen p {
+    font-size: 22px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+#gameOver {
+    display: none;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 350px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.85);
+
+    color: white;
+
+    border-radius: 20px;
+
+    z-index: 100;
+}
+
+#gameOver h1 {
+    font-size: 40px;
+
+    margin-bottom: 20px;
+}
+
+#gameOver p {
+    font-size: 26px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    padding: 15px 35px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ffcc00;
+
+    color: black;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ffaa00;
+}
+
+
+/* =========================
+   SMALL SCREEN
+========================= */
+
+@media (max-width: 700px) {
+
+    #game {
+        width: 90vw;
+        height: 85vh;
+    }
+
+}
