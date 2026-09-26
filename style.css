@@ -4,35 +4,61 @@
     box-sizing: border-box;
 }
 
+
+/* =========================
+   BODY
+========================= */
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    width: 100%;
 
     min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
     background: #222;
 
     font-family: Arial, sans-serif;
+
+    overflow: hidden;
+
+    touch-action: manipulation;
+
 }
 
 
 /* =========================
-   LARGE GAME
+   GAME
 ========================= */
 
 #game {
+
     position: relative;
 
     width: 600px;
+
     height: 800px;
 
     overflow: hidden;
 
-    background-image: url("assets/background.png");
+    background-image:
+        url("background.png");
 
     background-size: cover;
+
     background-position: center;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    touch-action: manipulation;
+
 }
 
 
@@ -41,43 +67,47 @@ body {
 ========================= */
 
 #bird {
+
     position: absolute;
 
-    width: 90px;
-    height: 72px;
+    width: 75px;
+
+    height: 60px;
 
     left: 120px;
+
     top: 350px;
 
     object-fit: contain;
 
     z-index: 10;
+
+    pointer-events: none;
+
 }
+
 
 /* =========================
    PIPES
 ========================= */
 
 .pipe {
+
     position: absolute;
 
-    width: 90px;
+    width: 85px;
 
-    background-image: url("assets/pipe.png");
+    background-image:
+        url("pipe.png");
 
     background-size: 100% 100%;
 
     background-repeat: no-repeat;
 
     z-index: 5;
-}
 
-.pipe.top {
-    top: 0;
-}
+    pointer-events: none;
 
-.pipe.bottom {
-    bottom: 0;
 }
 
 
@@ -86,9 +116,11 @@ body {
 ========================= */
 
 #score {
+
     position: absolute;
 
     top: 25px;
+
     left: 0;
 
     width: 100%;
@@ -97,13 +129,17 @@ body {
 
     color: white;
 
-    font-size: 45px;
+    font-size: 50px;
 
     font-weight: bold;
 
-    text-shadow: 3px 3px 5px black;
+    text-shadow:
+        3px 3px 5px black;
 
     z-index: 20;
+
+    pointer-events: none;
+
 }
 
 
@@ -112,38 +148,49 @@ body {
 ========================= */
 
 #startScreen {
+
     position: absolute;
 
     top: 50%;
+
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
-    width: 400px;
+    width: 380px;
 
     padding: 40px;
 
     text-align: center;
 
-    background: rgba(0, 0, 0, 0.75);
+    background:
+        rgba(0, 0, 0, 0.75);
 
     color: white;
 
     border-radius: 20px;
 
     z-index: 50;
+
 }
+
 
 #startScreen h1 {
-    font-size: 42px;
+
+    font-size: 40px;
 
     margin-bottom: 20px;
+
 }
 
+
 #startScreen p {
-    font-size: 22px;
+
+    font-size: 20px;
 
     margin-bottom: 25px;
+
 }
 
 
@@ -152,14 +199,17 @@ body {
 ========================= */
 
 #gameOver {
+
     display: none;
 
     position: absolute;
 
     top: 50%;
+
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
     width: 350px;
 
@@ -167,34 +217,47 @@ body {
 
     text-align: center;
 
-    background: rgba(0, 0, 0, 0.85);
+    background:
+        rgba(0, 0, 0, 0.8);
 
     color: white;
 
     border-radius: 20px;
 
     z-index: 100;
+
 }
 
+
 #gameOver h1 {
+
     font-size: 40px;
 
     margin-bottom: 20px;
+
 }
 
+
 #gameOver p {
-    font-size: 26px;
+
+    font-size: 25px;
 
     margin-bottom: 25px;
+
 }
 
 
 /* =========================
-   BUTTON
+   BUTTONS
 ========================= */
 
 button {
-    padding: 15px 35px;
+
+    min-width: 150px;
+
+    min-height: 55px;
+
+    padding: 12px 25px;
 
     border: none;
 
@@ -204,27 +267,128 @@ button {
 
     color: black;
 
-    font-size: 22px;
+    font-size: 20px;
 
     font-weight: bold;
 
     cursor: pointer;
+
+    touch-action: manipulation;
+
 }
 
+
 button:hover {
+
     background: #ffaa00;
+
 }
 
 
 /* =========================
-   SMALL SCREEN
+   MOBILE
 ========================= */
 
 @media (max-width: 700px) {
 
+    body {
+
+        background: black;
+
+    }
+
+
     #game {
-        width: 90vw;
-        height: 85vh;
+
+        width: 100vw;
+
+        height: 100vh;
+
+        max-width: 600px;
+
+        max-height: 800px;
+
+    }
+
+
+    #bird {
+
+        width: 60px;
+
+        height: 48px;
+
+        left: 20%;
+
+    }
+
+
+    #score {
+
+        font-size: 40px;
+
+        top: 15px;
+
+    }
+
+
+    #startScreen {
+
+        width: 80%;
+
+        padding: 30px 20px;
+
+    }
+
+
+    #startScreen h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    #startScreen p {
+
+        font-size: 17px;
+
+    }
+
+
+    #gameOver {
+
+        width: 75%;
+
+        padding: 30px 20px;
+
+    }
+
+
+    #gameOver h1 {
+
+        font-size: 30px;
+
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media (max-width: 400px) {
+
+    #startScreen h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    #score {
+
+        font-size: 32px;
+
     }
 
 }
